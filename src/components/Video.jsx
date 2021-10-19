@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 import thumbnail from '../assets/images/3.jpg';
 import classes from '../assets/styles/Video.module.css';
 
 const Video = () => (
-  <a href="quiz.html">
+  <Link to="/quiz">
     <div className={classes.video}>
       <img src={thumbnail} alt="thumbnail" />
       <p>#23 React Hooks Bangla - React useReducer hook Bangla</p>
@@ -11,7 +12,7 @@ const Video = () => (
         <p>Score : Not taken yet</p>
       </div>
     </div>
-  </a>
+  </Link>
 );
 
 export default Video;

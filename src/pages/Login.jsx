@@ -1,9 +1,10 @@
-import loginImage from '../../assets/images/login.svg';
-import classes from '../../assets/styles/Login.module.css';
-import Button from '../Button';
-import Form from '../Form';
-import Illustration from '../Illustration';
-import TextInput from '../TextInput';
+import { Link } from 'react-router-dom';
+import loginImage from '../assets/images/login.svg';
+import classes from '../assets/styles/Login.module.css';
+import Button from '../components/Button';
+import Form from '../components/Form';
+import Illustration from '../components/Illustration';
+import TextInput from '../components/TextInput';
 
 const Signup = () => (
   <>
@@ -22,7 +23,7 @@ const Signup = () => (
         </Button>
 
         <div className="info">
-          Don&apos;t have an account? <a href="signup.html">Signup</a> instead.
+          Don&apos;t have an account? <Link to="/signup">Signup</Link> instead.
         </div>
       </Form>
     </div>

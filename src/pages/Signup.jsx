@@ -1,10 +1,11 @@
-import signupImage from '../../assets/images/signup.svg';
-import classes from '../../assets/styles/Signup.module.css';
-import Button from '../Button';
-import Checkbox from '../Checkbox';
-import Form from '../Form';
-import Illustration from '../Illustration';
-import TextInput from '../TextInput';
+import { Link } from 'react-router-dom';
+import signupImage from '../assets/images/signup.svg';
+import classes from '../assets/styles/Signup.module.css';
+import Button from '../components/Button';
+import Checkbox from '../components/Checkbox';
+import Form from '../components/Form';
+import Illustration from '../components/Illustration';
+import TextInput from '../components/TextInput';
 
 const Signup = () => (
   <>
@@ -29,7 +30,7 @@ const Signup = () => (
         </Button>
 
         <div className="info">
-          Already have an account? <a href="login.html">Login</a> instead.
+          Already have an account? <Link to="/login">Login</Link> instead.
         </div>
       </Form>
     </div>
