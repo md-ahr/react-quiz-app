@@ -1,4 +1,11 @@
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile
+} from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
 import '../firebase';
 
@@ -28,16 +35,16 @@ export function AuthProvider({ children }) {
 
     // update profile
     await updateProfile(auth.currentUser, {
-      displayName: username,
+      displayName: username
     });
 
     const user = auth.currentUser;
 
-    setCurrentUser(...user);
+    setCurrentUser({...user});
   }
 
   // login function
-  function login(email, password) {
+  async function login(email, password) {
     const auth = getAuth();
     return signInWithEmailAndPassword(auth, email, password);
   }
@@ -52,12 +59,8 @@ export function AuthProvider({ children }) {
     currentUser,
     signup,
     login,
-    logout,
+    logout
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }
