@@ -1,24 +1,35 @@
-import classes from '../assets/styles/Videos.module.css';
+import { useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Link } from 'react-router-dom';
+import useVideoList from '../hooks/useVideoList';
 import Video from './Video';
 
-const Videos = () => (
-  <div className={classes.videos}>
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-    <Video />
-  </div>
-);
+const Videos = () => {
+
+  const [page, setPage] = useState(1);
+  const { loading, error, videos, hasMore } = useVideoList(page);
+
+  return (
+    <div>
+      {videos.length > 0 && (
+        <InfiniteScroll dataLength={videos.length} hasMore={hasMore} next={() => setPage(page + 12)} loader="Loading">
+          {videos.map((video) =>
+            video.noq > 0 ? (
+              <Link to={`/quiz/${video.youtubeID}`} key={video.youtubeID}>
+                <Video title={video.title} id={video.youtubeID} noq={video.noq} />
+              </Link>
+            ) : (
+              <Video title={video.title} id={video.youtubeID} noq={video.noq} key={video.youtubeID} />
+            )
+          )}
+        </InfiniteScroll>
+      )}
+      {!loading && videos.length === 0 && <div style={{ textAlign: 'center' }}>No data found!</div>}
+      {error && <div style={{ textAlign: 'center' }}>Thare was an error!</div>}
+      {loading && <div style={{ textAlign: 'center' }}>Loading...</div>}
+    </div>
+  );
+
+}
 
 export default Videos;
