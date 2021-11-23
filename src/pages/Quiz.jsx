@@ -37,6 +37,7 @@ const Quiz = () => {
   const [qna, dispatch] = useReducer(reducer, initialState);
   const { currentUser } = useAuth();
   const history = useHistory();
+  const videoTitle = history.location.state.videoTitle;
 
   useEffect(() => {
     dispatch({ type: 'questions', value: questions });
@@ -80,7 +81,7 @@ const Quiz = () => {
           <h4>Question can have multiple answers</h4>
           <Answers input options={qna[currentQuestion].options} handleChange={handleAnswerChange} />
           <ProgressBar next={nextQuestion} prev={prevQuestion} progress={percentage} submit={submitQuestion} />
-          <MiniPlayer />
+          <MiniPlayer id={id} title={videoTitle} />
         </>
       )}
     </>
